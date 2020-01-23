@@ -6,8 +6,6 @@
 Diceware is a small Golang package implementing the [Diceware method](https://en.wikipedia.org/wiki/Diceware).
 It uses [word lists from the EFF](https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases)
 
-The code is based on this awesome [StackOverflow answer](https://stackoverflow.com/a/31832326/2432477) by [icza](https://stackoverflow.com/users/1705598/icza).
-
 ## Installation
 
 To install `diceware`, run the following command:
