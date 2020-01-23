@@ -18,13 +18,18 @@ func Pick(words WordList) (string, error) {
 
 // Passphrase generates a string composed of `nbWord` words from the given WordList, separated by a space
 func Passphrase(nbWord int, words WordList) (string, error) {
+	return PassphraseWithSep(nbWord, words, " ")
+}
+
+// PassphraseWithSep generates a string composed of `nbWord` words from the given WordList, separated by the given separator
+func PassphraseWithSep(nbWord int, words WordList, sep string) (string, error) {
 	var builder strings.Builder
 	for i := 0; i < nbWord-1; i++ {
 		w, err := Pick(words)
 		if err != nil {
 			return "", err
 		}
-		fmt.Fprintf(&builder, "%s ", w)
+		fmt.Fprintf(&builder, "%s%s", w, sep)
 	}
 	w, err := Pick(words)
 	if err != nil {
