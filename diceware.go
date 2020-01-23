@@ -51,6 +51,7 @@ func (r *RollSet) RollDice(nb int) error {
 	return nil
 }
 
+// WordList is a list of word
 type WordList interface {
 	// Dice returns the number of dice used to pick a word
 	Dice() int
