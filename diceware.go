@@ -2,7 +2,9 @@ package diceware
 
 import (
 	"crypto/rand"
+	"fmt"
 	"math/big"
+	"strings"
 )
 
 var max = big.NewInt(6)
@@ -12,6 +14,24 @@ func Pick(words WordList) (string, error) {
 	var rs RollSet
 	rs.RollDice(words.Dice())
 	return words.At(rs), nil
+}
+
+// Passphrase generates a string composed of `nbWord` words from the given WordList, separated by a space
+func Passphrase(nbWord int, words WordList) (string, error) {
+	var builder strings.Builder
+	for i := 0; i < nbWord-1; i++ {
+		w, err := Pick(words)
+		if err != nil {
+			return "", err
+		}
+		fmt.Fprintf(&builder, "%s ", w)
+	}
+	w, err := Pick(words)
+	if err != nil {
+		return "", err
+	}
+	builder.WriteString(w)
+	return builder.String(), nil
 }
 
 // RollSet is a set die rolls
